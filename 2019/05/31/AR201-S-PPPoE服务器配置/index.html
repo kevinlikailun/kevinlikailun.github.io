@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kevin&#39;s Blog">
 <meta property="og:description" content="华为AR201-S 做PPPoE服务器，PC做PPPoE Client">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-31T11:27:31.338Z">
+<meta property="og:updated_time" content="2019-05-31T11:31:36.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AR201-S PPPoE服务器配置">
 <meta name="twitter:description" content="华为AR201-S 做PPPoE服务器，PC做PPPoE Client">
@@ -336,7 +336,7 @@
 <p>1.在aaa模式下配置ppp用户名密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">local-user test password cipher test123321</span><br><span class="line"> local-user test privilege level 0</span><br><span class="line"> local-user test service-type ppp</span><br></pre></td></tr></table></figure></p>
 <p>2.在ip pool 下配置地址池<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ip pool PPPoE1</span><br><span class="line"> gateway-list 10.211.1.1                  </span><br><span class="line"> network 10.211.1.0 mask 255.255.255.0 </span><br><span class="line"> excluded-ip-address 10.211.1.254 </span><br><span class="line"> dns-list 120.196.165.24 8.8.8.8</span><br></pre></td></tr></table></figure></p>
 <p>3.在PPPOE的摸板中配置PPPoE模板信息<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface Virtual-Template1</span><br><span class="line"> ppp authentication-mode chap </span><br><span class="line"> remote address pool PPPoE1</span><br><span class="line"> ppp keepalive retry-times 2</span><br><span class="line"> ppp ipcp dns 120.196.165.24 8.8.8.8</span><br><span class="line"> timer hold 30</span><br><span class="line"> ip address 10.211.1.254 255.255.255.0</span><br></pre></td></tr></table></figure></p>
-<p>4.在全局模式下配置easy ip<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Advanced ACL 3000, 1 rule</span><br><span class="line">Acl's step is 5 rule 5 permit ip (159579 matches)</span><br><span class="line">nat  outbound 3000 </span><br><span class="line">配置静态路由：ip route-static 0.0.0.0 0.0.0.0 Dialer1 //Dialer1非此PPPoE拨号接口</span><br></pre></td></tr></table></figure></p>
+<p>4.在全局模式下配置easy ip<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Advanced ACL 3000, 1 rule</span><br><span class="line">rule 5 permit ip (159579 matches)</span><br><span class="line">nat  outbound 3000 </span><br><span class="line">配置静态路由：ip route-static 0.0.0.0 0.0.0.0 Dialer1 //Dialer1非此PPPoE拨号接口</span><br></pre></td></tr></table></figure></p>
 <p>5.在PC端做测试；</p>
 
       

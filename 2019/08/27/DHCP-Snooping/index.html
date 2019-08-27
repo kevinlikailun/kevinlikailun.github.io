@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,">
+  <meta name="keywords" content="网络工程,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="什么是 Hexo？Hexo官网: https://hexo.io">
-<meta name="keywords" content="hexo">
+<meta name="description" content="DHCP Snooping DHCP被用于动态地址分发，极大的降低了终端接入网络的简易性，但是协议本身没有任何的安全保护机制，非常容易被针对攻击。同一广播域中一旦出现虚假DHCP Server，终端获取的地址将极有可能是虚假DHCP Server推送的IP地址，导致广播域中很大一部分终端无法上网。">
+<meta name="keywords" content="网络工程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo的next主题配置与修改">
-<meta property="og:url" content="http://yoursite.com/2019/03/11/hexo的next主题配置与修改/index.html">
+<meta property="og:title" content="DHCP Snooping">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/DHCP-Snooping/index.html">
 <meta property="og:site_name" content="Kevin&#39;s Blog">
-<meta property="og:description" content="什么是 Hexo？Hexo官网: https://hexo.io">
+<meta property="og:description" content="DHCP Snooping DHCP被用于动态地址分发，极大的降低了终端接入网络的简易性，但是协议本身没有任何的安全保护机制，非常容易被针对攻击。同一广播域中一旦出现虚假DHCP Server，终端获取的地址将极有可能是虚假DHCP Server推送的IP地址，导致广播域中很大一部分终端无法上网。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T15:33:23.668Z">
+<meta property="og:updated_time" content="2019-08-27T07:26:36.601Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo的next主题配置与修改">
-<meta name="twitter:description" content="什么是 Hexo？Hexo官网: https://hexo.io">
+<meta name="twitter:title" content="DHCP Snooping">
+<meta name="twitter:description" content="DHCP Snooping DHCP被用于动态地址分发，极大的降低了终端接入网络的简易性，但是协议本身没有任何的安全保护机制，非常容易被针对攻击。同一广播域中一旦出现虚假DHCP Server，终端获取的地址将极有可能是虚假DHCP Server推送的IP地址，导致广播域中很大一部分终端无法上网。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/11/hexo的next主题配置与修改/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/DHCP-Snooping/">
 
 
 
 
 
-  <title>hexo的next主题配置与修改 | Kevin's Blog</title>
+  <title>DHCP Snooping | Kevin's Blog</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/hexo的next主题配置与修改/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/DHCP-Snooping/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kevin">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo的next主题配置与修改</h1>
+          <h1 class="post-title" itemprop="name headline">DHCP Snooping</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T21:33:01+08:00">
-                2019-03-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-27T15:25:34+08:00">
+                2019-08-27
               </time>
             
 
@@ -332,13 +332,14 @@
       
 
       
-        <p>什么是 Hexo？<br>Hexo官网: <a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a><br><a id="more"></a><br>Hexo 是一个快速、简洁且高效的博客框架<br>Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
-<p>安装<br>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
-<p>Node.js<br>Git<br>如果您的电脑中已经安装上述必备程序，那么恭喜您！接下来只需要使用 npm 即可完成 Hexo 的安装<br>npm install -g hexo-cli</p>
-<p>Hexo-设置阅读全文<br>1、在文章中使用&lt; !–more–&gt; 手动进行截断<br>这种方法可以根据文章的内容，自己在合适的位置添加 &lt; !–more–&gt; 标签，使用灵活，也是Hexo推荐的方法。</p>
-<p>2、自动形成摘要，在主题配置文件中添加<br>默认截取的长度为 150 字符，可以根据需要自行设定<br>auto_excerpt:<br>  enable: true<br>  length: 150</p>
-<p>3、在文章中的front-matter中添加description，并提供文章摘录<br>这种方式只会在首页列表中显示文章的摘要内容，进入文章详情后不会再显示。</p>
-<p>注：建议使用 &lt; !– more –&gt;（即第一种方式），除了可以精确控制需要显示的摘录内容以外， 这种方式也可以让 Hexo 中的插件更好的识别。</p>
+        <p>DHCP Snooping</p>
+<p>DHCP被用于动态地址分发，极大的降低了终端接入网络的简易性，但是协议本身没有任何的安全保护机制，非常容易被针对攻击。同一广播域中一旦出现虚假DHCP Server，终端获取的地址将极有可能是虚假DHCP Server推送的IP地址，导致广播域中很大一部分终端无法上网。<br><a id="more"></a></p>
+<p>DHCP Snooping功能概述<br>1.对非信任接口收到的DHCP等报文过滤<br>2.限制DHCP速率<br>3.维护DHCP snooping binding database<br>4.DAI需要DHCP snooping binding database的信息</p>
+<p>DHCP Snooping<br>报文过滤<br>当DHCP Snooping功能在相应vlan开启后，在不信任的接口在收到以下报文会产生丢弃行为</p>
+<p>当收到（例如：DHCPOFFER、DHCPACK、DHCPNAK、DHCPLEASEQUERY报文）</p>
+<p>当收到源MAC地址和DHCP客户端硬件地址不匹配</p>
+<p>当收到DHCPRELEASE、DHCPDECLINE报文但是和DHCP Snooping数据库中的绑定条目不匹配</p>
+<p>当收到DHCP packets含有options-82选项</p>
 
       
     </div>
@@ -356,7 +357,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/网络工程/" rel="tag"># 网络工程</a>
           
         </div>
       
@@ -369,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/09/LLinux-Centos-笔记/" rel="next" title="Linux Centos 笔记">
-                <i class="fa fa-chevron-left"></i> Linux Centos 笔记
+              <a href="/2019/08/27/CISCO-DMVPN/" rel="next" title="CISCO DMVPN">
+                <i class="fa fa-chevron-left"></i> CISCO DMVPN
               </a>
             
           </div>
@@ -378,10 +379,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/16/Hexo-next插入图片问题/" rel="prev" title="Hexo-next插入图片问题">
-                Hexo-next插入图片问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

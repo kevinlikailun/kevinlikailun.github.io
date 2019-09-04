@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络工程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="BGP使用如下四种消息类型：1、Open消息：Open消息是TCP连接建立后发送的第一个消息，用于建立BGP对等体之间的连接关系。2、Keepalive消息：BGP会周期性地向对等体发出Keepalive消息，用来保持连接的有效性。3、Update消息：Update消息用于在对等体之间交换路由信息。它既可以发布可达路由信息，也可以撤销不可达路由信息。4、Notification消息：当BGP检测到">
+<meta name="keywords" content="网络工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BGP学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/BGP学习笔记/index.html">
+<meta property="og:site_name" content="Kevin&#39;s Blog">
+<meta property="og:description" content="BGP使用如下四种消息类型：1、Open消息：Open消息是TCP连接建立后发送的第一个消息，用于建立BGP对等体之间的连接关系。2、Keepalive消息：BGP会周期性地向对等体发出Keepalive消息，用来保持连接的有效性。3、Update消息：Update消息用于在对等体之间交换路由信息。它既可以发布可达路由信息，也可以撤销不可达路由信息。4、Notification消息：当BGP检测到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-04T03:52:50.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BGP学习笔记">
+<meta name="twitter:description" content="BGP使用如下四种消息类型：1、Open消息：Open消息是TCP连接建立后发送的第一个消息，用于建立BGP对等体之间的连接关系。2、Keepalive消息：BGP会周期性地向对等体发出Keepalive消息，用来保持连接的有效性。3、Update消息：Update消息用于在对等体之间交换路由信息。它既可以发布可达路由信息，也可以撤销不可达路由信息。4、Notification消息：当BGP检测到">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/04/BGP学习笔记/">
+
+
+
+
+
+  <title>BGP学习笔记 | Kevin's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kevin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有梦想何必远方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/BGP学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kevin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BGP学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-04T11:48:01+08:00">
+                2019-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>BGP使用如下四种消息类型：<br>1、Open消息：Open消息是TCP连接建立后发送的第一个消息，用于建立BGP对等体之间的连接关系。<br>2、Keepalive消息：BGP会周期性地向对等体发出Keepalive消息，用来保持连接的有效性。<br>3、Update消息：Update消息用于在对等体之间交换路由信息。它既可以发布可达路由信息，也可以撤销不可达路由信息。<br>4、Notification消息：当BGP检测到错误状态时，就向对等体发出Notification消息，之后BGP连接会立即中断。<br><a id="more"></a></p>
+<p>BGP邻居建立中的状态和过程如下：<br>1、空闲（Idle）：为初始状态，当协议激活后开始初始化，复位计时器，并发起第一个TCP连接，并开始倾听远程对等体所发起的连接，同时转向Connect状态。。<br>2、连接（Connect）：开始TCP连接并等待TCP连接成功的消息。如果TCP连接成功，则进入OpenSent状态；如果TCP连接失败，进入Active状态。<br>3、行动（Active）：BGP总是试图建立TCP连接，若连接计时器超时，则退回到Connect状态，TCP连接成功就转为Open sent状态。<br>4、OPEN发送（Open sent）：TCP连接已建立，自己已发送第一个OPEN报文，等待接收对方的Open报文，并对报文进行检查，若发现错误则发送Notification消息报文并退回到Idle状态。若检查无误则发送Keepalive消息报文，Keepalive计时器开始计时，并转为Open confirm状态。<br>5、OPEN证实（Open confirm）：BGP等待Keepalive报文，同时复位保持计时器。如果收到了Keepalive报文，就转为Established状态，邻居关系协商完成。如果系统收到一条更新或Keepalive消息，它将重新启动保持计时器；如果收到Notification消息，BGP就退回到空闲状态。<br>6、已建立（Established）：即建立了邻居（对等体）关系，路由器将和邻居交换Update报文，同时复位保持计时器。</p>
+<p>BGP路由通告原则<br>BGP在进行路由通告的时候，需要遵循以下原则：<br>1、多条路径时，BGP Speaker只选最优的给自己使用（负载均衡和FRR除外）。<br>2、BGP Speaker只把自己使用的路由（最优路由）通告给相邻体。<br>3、BGP Speaker从EBGP获得的路由会向自己所有BGP相邻体通告（包括EBGP和IBGP）。<br>4、BGP Speaker从IBGP获得的路由不向自己的IBGP相邻体通告（反射器除外）。<br>5、BGP Speaker从IBGP获得的路由是否通告给自己的EBGP相邻体要根据IGP和BGP同步的情况来决定。<br>6、当收到对端的refresh报文并且本端邻居支持refresh能力，BGP Speaker将把自己所 有BGP路由通告给对等体。<br>7、GR过程中，主备倒换方在GR结束时BGP Speaker会把自己所有BGP路由通告给对等体。</p>
+<p>BGP属性：<br>1、公认必遵（公认强制）<br>（1）ORIGIN（起源）：这个属性说明了源路由是怎样放到BGP表中的。有三个可能的源IGP,EGP,以及INCOMPLETE.路由器在多个路由选择的处理中使用这个信息。路由器选择具有最低ORIGIN类型的路径。<br>（2）AS_PATH（AS路径）：指出包含在UPDATE报文中的路由信息所经过的自治系统的序列。<br>（3）Next_HOP(下一跳)声明路由器所获得的BGP路由的下一跳，对EBGP会话来说，下一跳就是通告该路由的邻居路由器的源地址。IBGPnetwork或者import-route的路由，下一跳都为0.0.0.0（自己）</p>
+<p>2、公认自决（公认任意）<br>（1）LOCAL_PREF(本地优先级)：本地优先级属性是用于告诉自治系统内的路由器在有多条路径的时候，怎样离开自治系统。本地优先级越高，路由优先级越高。<br>（2）ATOMIC_AGGREGATE(原子聚合)：原子聚合属性指出已被丢失了的信息。</p>
+<p>3、可选过渡<br>（1）AGGREGATOR(聚合者)：此属性标明了实施路由聚合的BGP路由器ID和聚合路由的路由器的AS号。<br>（2）COMMUNITY(团体)：此属性指共享一个公共属性的一组路由器。<br>4、可选非过渡。<br>（1）MED(多出口区分)：该属性通知AS以外的路由器采用哪一条路径到达AS,它也被认为是路由的外部度量，低MED值表示高的优先级。默认情况下只比较来自同一个AS的MED值。<br>（2）ORIGINATOR_ID(起源ID)：路由反射器会附加到这个属性上，它携带本AS路由器的路由器ID，用以防止环路。<br>（3）CLUSTER_LIST(簇列表)：此属性显示了采用的反射路径。</p>
+<p>邻居状态解析：<br>1、idle状态<br>（1）没有路由<br>（2）EBGP多跳<br>2、Connect和Active<br>（1）认证不匹配（通过TCP报文中的扩展选项来实现认证）<br>（2）发送源不匹配<br>（3）流量过滤</p>
+<p>MED属性的传递范围：<br>1、如果路由是源于本地的，可以携带MED属性，并传递给EBGP邻居和IBGP邻居。<br>2、如果路由是从EBGP邻居学习到的，并且携带了MED属性，MED属性只能在AS内部传递，不能传递出本AS<br>3、如果路由是从IBG邻居学习到的，并且携带了MED属性，MED属性只能在AS内部传递，不能传出本AS。</p>
+<p>公认团体属性：<br>1、NO EXPORT(0<em>FFFFFF01)（不通告给EBGP对等体，但是会通告给联盟的EBGP对等体）<br>2、NP ADVERTISE(0</em>FFFFFF02)（不通告给任何的BGP对等体）<br>3、NO EXPORT SUBCONFED（0*FFFFFF03）（不通告给EBGP对等体，同时也不通告给联盟的EBGP对等体）<br>私有团体属性：<br>AS(2Bit）Number（2Bit）（AS:NN）</p>
+<p>BGP路径选择过程:<br>前提：BGP路由必须是有效路由，带*标识的。<br>1、Preferred-Value值数值高的优先（默认为0，华为私有属性） 。<br>2、Local-Preference值最高的路由优先（IBGP通告为100，EBGP不通告）。</p>
+<p>AS-PATH（1、AS_SET（标识AS_NUMBER是无序的）2、AS_SEQUENCE(标识AS_NUMBER是有序的)）</p>
+<p>3、聚合路由优先于非聚合路由（Aggregate（手动优先于自动）&gt;network&gt;import-route）<br>汇总路由有两种方式：手工和自动（BGP默认情况下关闭自动汇总，自动汇总只能针对引入的外部路由做汇总，而network的不行）。<br>手工汇总：aggregate 手工汇总默认情况不会抑制明细路由，同时通告汇总明细，但是可以手工配置为只通告汇总。<br>自动汇总：summary automatic 自动汇总会自动抑制明细路由，而通告汇总路由。<br>4、AS路径的长度最短的路径优先。<br>5、比较Origin属性，IGP优先于EGP，EGP优先于Incomplete。<br>6、选择MED较小的路由。（Cost）<br>7、EBGP路由优先于IBGP路由（通过内部优先级比较，EBGP为20，IBGP为200）。<br>8、BGP优先选择到BGP下一跳IGP度量最低的路径。<br>9、当以上全部相同，则为等价路由，可以负载分担（IP RIB）。<br>     注：AS_PATH必须完全一致（IBGP\EBGP），当负载分担时，以下三条原则无效。<br>10、比较Cluster-List长度，短者优先（RR）。<br>11、比较Originator ID（如果没有Originator ID，则用Router ID 比较），选择数值小的路径。<br>12、比较对等体的IP地址，选择IP地址数值最小的路径。</p>
+<p>自动聚合：<br>队BGP引入的子网路由进行自然掩码聚合。配合自动聚合后，生成聚合后的自然网段路由，而原引入的子网路由被抑制，不会被优选和发布给BGP邻居。</p>
+<p>BGP路由汇总：<br>手工汇总：针对本地network和从邻居学到的路由条目（aggregate X.X.X.X/X）<br>自动汇总：只能针对引入的外部路由（summary automatic）</p>
+<p>汇总路由的属性继承（不敲as-set情况下）：<br>1、汇总路由不会继承明细路由的MED值，MED为空。<br>2、汇总路由不会继承明细路由的本地优先级Local Prf，并设置汇总路由的本地优先级为100.<br>3、汇总路由不会继承明细路由的as-path属性<br>4、汇总路由会继承明细路由的最低起源属性（华为中会继承，思科不会）<br>5、汇总路由会继承所有明细路由的团体属性（华为中会继承，思科不会）</p>
+<p>汇总路由的属性继承（敲as-set情况下）：<br>1、汇总路由不会继承明细路由的MED值，MED为空。<br>2、汇总路由不会继承明细路由的本地优先级Local Prf，并设置优先级为空.<br>3、汇总路由不会继承明细路由的as-path属性，并且将明细路由AS_PATH属性设置为无序的，用{}来标识。<br>4、汇总路由会继承明细路由的最低起源属性<br>5、汇总路由会继承所有明细路由的团体属性</p>
+<p>BGP反射与联盟<br>BGP是怎样防止环路：<br>1、EBGP是通过AS-PATH属性，丢弃从EBGP对等体接收到的再AS-PATH属性里包含自身AS号的任何更新信息。<br>2、IBGP是BGP路由器不会将任何从对等体接收到的更新信息传给其他对等体。</p>
+<p>路由反射器：降低对指定路由器IBGP路由通告机制的限制，允许将从IBGP对等体接收到的更新信息传给某些IBGP对等体。<br>联盟：将大的AS分成若干小的AS，而小AS之间简历EBGP对等体关系。</p>
+<p>IBGP水平分割的解决方案：<br>1、full-mesh全互联<br>2、引入外部路由<br>3、RR（Route Reflector）反射器：将从IBGP邻居收到的路由条目反射给反射客户端，反射同时不修改路由属性，同时新增两种属性，分别是：cluster-list（RR在反射的同时增加一个cluster-list属性，同时加入cluster-id，默认情况下cluster-id等于route-id）、originator-id（标识路由是由谁通告的，用Route-id标识。）<br>4、联盟（Confederation）：联盟的解决方案是将一个大的AS划分为多个小的AS，小的AS之间建立多个EBGP邻居关系。<br>注：（1）联盟里可以包含RR（2）RR里面不能包含联盟</p>
+<p>RR中的三种对等体角色：<br>1、路由反射器（RR）<br>2、反射客户端（RR-client）<br>3、非客户端（non-client）</p>
+<p>1、如果从EBGP邻居收到的路由，会反射给客户端和非客户端。<br>2、如果从非客户端收到的IBGP路由，只会反射给客户端和EBGP邻居，不会反射给非客户端。<br>3、如果从客户端收到的IBGP路由，可以反射给客户端，非客户端和EBGP邻居。</p>
+<p>注：（小括号标识联盟的AS，中括号标识汇总后的联盟AS，大括号标识汇总后的外部AS）<br>1、联盟的AS_PATH长度在选路时计算为0，同时包括联盟的汇总路由。<br>2、在联盟中只根据主AS号判断路由环路，不根据联盟的子AS号判断。<br>3、在联盟的EBGP邻居之间传递路由时，默认不改变下一跳。<br>4、在联盟中默认不比较来自同联盟的路由条目的MED值。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络工程/" rel="tag"># 网络工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/27/DHCP-Snooping/" rel="next" title="DHCP Snooping">
+                <i class="fa fa-chevron-left"></i> DHCP Snooping
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/04/OSPF学习笔记/" rel="prev" title="OSPF学习笔记">
+                OSPF学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Kevin</p>
+              <p class="site-description motion-element" itemprop="description">没有梦想何必远方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kevinlikailun/kevinlikailun.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/1783314490/home?wvr=5" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-Weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kevin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">作者：Kevin</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">版本 &mdash;  v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

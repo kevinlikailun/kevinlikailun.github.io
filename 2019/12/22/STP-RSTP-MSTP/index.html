@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="网络工程,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="没有梦想何必远方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kevin&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/学习笔记/index.html">
+<meta name="description" content="生成树协议运行生成树算法(STA).生成树算法很复杂，但是其过程可以归纳为以下3个步骤：（1）选择根网桥（2）选择根端口（3）选择指定端口">
+<meta name="keywords" content="网络工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STP&amp;RSTP&amp;MSTP">
+<meta property="og:url" content="http://yoursite.com/2019/12/22/STP-RSTP-MSTP/index.html">
 <meta property="og:site_name" content="Kevin&#39;s Blog">
-<meta property="og:description" content="没有梦想何必远方">
+<meta property="og:description" content="生成树协议运行生成树算法(STA).生成树算法很复杂，但是其过程可以归纳为以下3个步骤：（1）选择根网桥（2）选择根端口（3）选择指定端口">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-22T13:09:47.395Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin&#39;s Blog">
-<meta name="twitter:description" content="没有梦想何必远方">
+<meta name="twitter:title" content="STP&amp;RSTP&amp;MSTP">
+<meta name="twitter:description" content="生成树协议运行生成树算法(STA).生成树算法很复杂，但是其过程可以归纳为以下3个步骤：（1）选择根网桥（2）选择根端口（3）选择指定端口">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/学习笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/22/STP-RSTP-MSTP/">
 
 
 
 
 
-  <title>分类: 学习笔记 | Kevin's Blog</title>
+  <title>STP&RSTP&MSTP | Kevin's Blog</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,291 +229,179 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>学习笔记<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/22/STP-RSTP-MSTP/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kevin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/12/22/路由策略及策略路由/" itemprop="url">
-              
-                <span itemprop="name">路由策略及策略路由</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">STP&RSTP&MSTP</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-22T21:10:41+08:00" content="2019-12-22">
-          12-22
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-22T21:09:16+08:00">
+                2019-12-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/22/高级IP地址规划/" itemprop="url">
-              
-                <span itemprop="name">高级IP地址规划</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-22T21:10:28+08:00" content="2019-12-22">
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/22/STP-RSTP-MSTP/" itemprop="url">
-              
-                <span itemprop="name">STP&RSTP&MSTP</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-22T21:09:16+08:00" content="2019-12-22">
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/22/ARP/" itemprop="url">
-              
-                <span itemprop="name">ARP</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-22T21:07:21+08:00" content="2019-12-22">
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/04/MPLS-VPN/" itemprop="url">
-              
-                <span itemprop="name">MPLS VPN</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-04T11:48:24+08:00" content="2019-09-04">
-          09-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/04/OSPF学习笔记/" itemprop="url">
-              
-                <span itemprop="name">OSPF学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-04T11:48:13+08:00" content="2019-09-04">
-          09-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/04/BGP学习笔记/" itemprop="url">
-              
-                <span itemprop="name">BGP学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-04T11:48:01+08:00" content="2019-09-04">
-          09-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/27/DHCP-Snooping/" itemprop="url">
-              
-                <span itemprop="name">DHCP Snooping</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-27T15:25:34+08:00" content="2019-08-27">
-          08-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/27/CISCO-DMVPN/" itemprop="url">
-              
-                <span itemprop="name">CISCO DMVPN</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-27T15:24:01+08:00" content="2019-08-27">
-          08-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/31/AR201-S-PPPoE服务器配置/" itemprop="url">
-              
-                <span itemprop="name">AR201-S PPPoE服务器配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-31T19:18:40+08:00" content="2019-05-31">
-          05-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>生成树协议运行生成树算法(STA).生成树算法很复杂，但是其过程可以归纳为以下3个步骤：<br>（1）选择根网桥<br>（2）选择根端口<br>（3）选择指定端口</p>
+<a id="more"></a>
+<p>关于选择根网桥：选择根网桥的依据是网桥ID，网桥ID由网桥优先级和网桥MAC地址组成。网桥的默认优先级是32768.使用show mac-address-table时，显示在最前面的MAC地址就是计算时所使用的MAC地址。网桥ID值小的为根网桥，当优先级相同时，MAC地址小的为根网桥。</p>
+<p>关于选择根端口：每个非根交换机选择一个根端口。选择顺序为：到根网桥最低的根路径成本→发送BPDU的网桥ID较小→端口ID较小的。端口ID由端口优先级与端口编号组成。默认的端口优先级为128。</p>
+<p>关于选择指定端口：每个网段上选择一个指定端口。选择顺序为：根路径成本较低→发送BPDU的交换机的网桥ID值较小→本端口的ID值较小。另外，根网桥的接口皆为指定端口，因为根网桥上端口的根路径成本为0。</p>
+<p>端口状态<br>Blocking（阻塞状态）：此时，二层端口为非指定端口，也不会参与数据帧的转发。该端口通过接收BPDU来判断根交换机的位置和根ID，以及在STP拓扑收敛结束之后，各交换机端口应该处于什么状态，在默认情况下，端口会在这种状态下停留20秒钟时间。<br>Listening（侦听状态）：生成树此时已经根据交换机所接收到的BPDU而判断出了这个端口应该参与数据帧的转发。于是交换机端口就将不再满足于接收BPDU，而同时也开始发送自己的BPDU，并以此通告邻接的交换机该端口会在活动拓扑中参与转发数据帧的工作。在默认情况下，该端口会在这种状态下停留15秒钟的时间。<br>Learning(学习状态)：这个二层端口准备参与数据帧的转发，并开始填写MAC表。在默认情况下，端口会在这种状态下停留15秒钟时间。<br>Forwarding（转发状态）：这个二层端口已经成为了活动拓扑的一个组成部分，它会转发数据帧，并同时收发BPDU。<br>Disabled（禁用状态）：这个二层端口不会参与生成树，也不会转发数据帧。</p>
+<p>协议不足<br>1、拓扑收敛慢，当网络拓扑发生改变的时候，生成树协议需要50-52秒的时间才能完成拓扑收敛。<br>2、不能提供负载均衡的功能。当网络中出现环路的时候，生成树协议简单的将环路进行Block，这样该链路就不能进行数据包的转发，浪费网络资源。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络工程/" rel="tag"># 网络工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/22/ARP/" rel="next" title="ARP">
+                <i class="fa fa-chevron-left"></i> ARP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/22/高级IP地址规划/" rel="prev" title="高级IP地址规划">
+                高级IP地址规划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/学习笔记/page/2/">2</a><a class="extend next" rel="next" href="/categories/学习笔记/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -519,6 +409,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -749,6 +643,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

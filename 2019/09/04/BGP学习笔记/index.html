@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kevin&#39;s Blog">
 <meta property="og:description" content="BGP使用如下四种消息类型：1、Open消息：Open消息是TCP连接建立后发送的第一个消息，用于建立BGP对等体之间的连接关系。2、Keepalive消息：BGP会周期性地向对等体发出Keepalive消息，用来保持连接的有效性。3、Update消息：Update消息用于在对等体之间交换路由信息。它既可以发布可达路由信息，也可以撤销不可达路由信息。4、Notification消息：当BGP检测到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-04T03:52:50.159Z">
+<meta property="og:updated_time" content="2019-12-22T13:08:33.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BGP学习笔记">
 <meta name="twitter:description" content="BGP使用如下四种消息类型：1、Open消息：Open消息是TCP连接建立后发送的第一个消息，用于建立BGP对等体之间的连接关系。2、Keepalive消息：BGP会周期性地向对等体发出Keepalive消息，用来保持连接的有效性。3、Update消息：Update消息用于在对等体之间交换路由信息。它既可以发布可达路由信息，也可以撤销不可达路由信息。4、Notification消息：当BGP检测到">
@@ -354,6 +354,7 @@
 <p>RR中的三种对等体角色：<br>1、路由反射器（RR）<br>2、反射客户端（RR-client）<br>3、非客户端（non-client）</p>
 <p>1、如果从EBGP邻居收到的路由，会反射给客户端和非客户端。<br>2、如果从非客户端收到的IBGP路由，只会反射给客户端和EBGP邻居，不会反射给非客户端。<br>3、如果从客户端收到的IBGP路由，可以反射给客户端，非客户端和EBGP邻居。</p>
 <p>注：（小括号标识联盟的AS，中括号标识汇总后的联盟AS，大括号标识汇总后的外部AS）<br>1、联盟的AS_PATH长度在选路时计算为0，同时包括联盟的汇总路由。<br>2、在联盟中只根据主AS号判断路由环路，不根据联盟的子AS号判断。<br>3、在联盟的EBGP邻居之间传递路由时，默认不改变下一跳。<br>4、在联盟中默认不比较来自同联盟的路由条目的MED值。</p>
+<p>联盟EBGP路由的防环机制：<br>1、如果EBGP路由是来自己联盟的，检查AS_PATH属性中是否包含本地的联盟子AS number，如果包含则拒收，不会检查主AS number。<br>2、如果EBGP路由是来自外部AS的EBGP邻居，检查AS_PATH属性中是否包含本地的主AS number，如果包含则拒收，不会检查联盟的AS number。</p>
 
       
     </div>
@@ -464,7 +465,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

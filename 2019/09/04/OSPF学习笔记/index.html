@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="OSPF支持的网络类型：1、数据链路层是Ethernet等2、点对点P2P类型，数据链路层是PPP、HDLC等3、NBMA类型，数据链路层是帧中继等4、点到多点P2MP类型，需手工配置">
+<meta name="description" content="OSPF报文是通过IP承载的，IP协议类型89标识了OSPF协议； OSPF基本特点：1、支持五类域间路由（CIDR）2、无路由自环3、收敛速度快4、使用IP组播收发协议数据5、支持多条等值路由6、支持协议报文的认证">
 <meta name="keywords" content="网络工程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OSPF学习笔记">
 <meta property="og:url" content="http://yoursite.com/2019/09/04/OSPF学习笔记/index.html">
 <meta property="og:site_name" content="Kevin&#39;s Blog">
-<meta property="og:description" content="OSPF支持的网络类型：1、数据链路层是Ethernet等2、点对点P2P类型，数据链路层是PPP、HDLC等3、NBMA类型，数据链路层是帧中继等4、点到多点P2MP类型，需手工配置">
+<meta property="og:description" content="OSPF报文是通过IP承载的，IP协议类型89标识了OSPF协议； OSPF基本特点：1、支持五类域间路由（CIDR）2、无路由自环3、收敛速度快4、使用IP组播收发协议数据5、支持多条等值路由6、支持协议报文的认证">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-04T03:52:48.107Z">
+<meta property="og:updated_time" content="2019-12-22T13:11:55.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OSPF学习笔记">
-<meta name="twitter:description" content="OSPF支持的网络类型：1、数据链路层是Ethernet等2、点对点P2P类型，数据链路层是PPP、HDLC等3、NBMA类型，数据链路层是帧中继等4、点到多点P2MP类型，需手工配置">
+<meta name="twitter:description" content="OSPF报文是通过IP承载的，IP协议类型89标识了OSPF协议； OSPF基本特点：1、支持五类域间路由（CIDR）2、无路由自环3、收敛速度快4、使用IP组播收发协议数据5、支持多条等值路由6、支持协议报文的认证">
 
 
 
@@ -332,12 +332,35 @@
       
 
       
-        <p>OSPF支持的网络类型：<br>1、数据链路层是Ethernet等<br>2、点对点P2P类型，数据链路层是PPP、HDLC等<br>3、NBMA类型，数据链路层是帧中继等<br>4、点到多点P2MP类型，需手工配置<br><a id="more"></a><br>广播类型：DR/BDR，功能：减少邻居会话，产生网络LSA</p>
-<p>OSPF报文类型：<br>Hello报文：用于建立和维持邻居关系<br>DD报文：描述本地LSDB的摘要信息，用于两台路由器进行数据库同步<br>LSR报文：用于向对方请求所需的LSA，路由器只有在OSPF邻居双方成功交换DD报文后才会向对方发出LSR报文<br>LSU报文:用于向对方发送其所需要的LSA<br>LSAck报文:用来对收到的LSA进行确认</p>
+        <p>OSPF报文是通过IP承载的，IP协议类型89标识了OSPF协议；</p>
+<p>OSPF基本特点：<br>1、支持五类域间路由（CIDR）<br>2、无路由自环<br>3、收敛速度快<br>4、使用IP组播收发协议数据<br>5、支持多条等值路由<br>6、支持协议报文的认证<br><a id="more"></a></p>
+<p>OSPF采用层次设计的好处：<br>1、减少了路由表的条目<br>2、LSA的flood在网络边界停止，加速汇聚<br>3、缩小网络的不稳定性，一个区域的问题不会影响其他区域</p>
+<p>OSPF建立邻居的必要条件：<br>1、Hello/Dead Intervals<br>2、Area ID<br>3、Authentication password<br>4、Stub Area Flag<br>5、MTU<br>6、subnet mask（必须时同一个网段）</p>
+<p>OSPF支持的网络类型：<br>1、数据链路层是Ethernet等<br>2、点对点P2P类型，数据链路层是PPP、HDLC等<br>3、NBMA类型，数据链路层是帧中继等<br>4、点到多点P2MP类型，需手工配置</p>
+<p>SPF算法：<br>1、在一个区域内的所有路由器由同样的LSDB<br>2、没一个路由器在计算时都将自己作为树根<br>3、具有去往目标的最低cost值得路由时最好得路径<br>4、最好得路由被放入转发表。</p>
+<p>广播类型：DR/BDR，功能：减少邻居会话，产生网络LSA</p>
+<p>DR/BDR的选举：<br>1、比较优先级，越大越优（默认为1，如设为0标识不参与选举）<br>2、比较Route-ID，越大越优</p>
+<p>DRother发送LSA给DR/BDR用224.0.0.6<br>DR发送LSA给DRother用224.0.0.5<br>非MA网络（没有DR/BDR），路由器都使用224.0.0.5</p>
+<p>DR/BDR特点：<br>1、不抢占，DR正常时，即使有新的Pri比DR高得路由器也不能抢占成为DR<br>2、DR正常时，BDR只接受所有信息，但转发LSA和同步LSDB得任务由DR完成，当DR故障时，BDR自动成为DR，完成DR得工作，并选举新的BDR<br>3、DR是个接口概念，每个网段都会选举DR。<br>4、不同网段分别选DR/BDR</p>
+<p>OSPF报文类型：<br>Hello报文：<br>用于建立和维持邻居关系</p>
+<p>DD报文：<br>描述本地LSDB的摘要信息，用于两台路由器进行数据库同步</p>
+<p>LSR报文：<br>用于向对方请求所需的LSA<br>路由器只有在OSPF邻居双方成功交换DD报文后才会向对方发出LSR报文</p>
+<p>LSU报文:<br>用于向对方发送其所需要的LSA</p>
+<p>LSAck报文:<br>用来对收到的LSA进行确认</p>
+<p>DD包（隐式确认）中有一个三位得标志字段（主从关系控制标志）：Init（是否第一个包）、More（是否还有后续包）、master/slaver（主/从），选举主从关系的目的保证DD报文的可靠性</p>
+<p>OSPF报文头部格式：<br>version#：OSPF协议号，应当设置成2<br>Type:OSPF报文类型，OSPF共有五种报文<br>Packet length：OSPF报文总长度，包括报文头部。单元时字节<br>Route ID：生成次报文得路由器得Router ID<br>Area ID：此报文需要被通告的区域<br>Autype：验证此报文所应当使用的验证方法<br>Authentication：验证此报文时所需要的密码等信息</p>
+<p>Hello报文格式：<br>Network mask：发送hello报文的接口的网络掩码。<br>Hello Interval：发送Hello报文的时间间隔，单位为秒。<br>Options：标识发送此报文的OSPF路由器所支持的可选功能。<br>Router Priority：发送Hello报文接口的优先级，用于选举DR和BDR<br>Router Dead Interval：宣告邻居路由器不继续在该网段上运行OSPF的时间间隔<br>Designated Router：发送Hello报文的路由器所选举出的DR的IP地址。<br>Backup Designated Router：发送Hello报文的卢欧气所选举的BDR的IP地址。<br>Neighbor：邻居路由器的Router ID列表，标识本路由器已经从该邻居收到合法的Hello报文。</p>
+<p>Options（8bit）：<br>1、DN（Downbit）：用于在MPLS VPN网络环境中防止OSPF环路。<br>2、O：不透明位，用于MPLS TE扩展使用。<br>3、DC：按需链路（Vlink和Sham-link）<br>4、NP（N/P）：如果在Hello和DD报文中位置位，标识NSSA区域， 如果在LSA中置位，代表7转5.<br>5、MC：支持MOSPF（组播OSPF）<br>6、E：支持外部路由。（允许接受和转发外部路由），默认情况下Ebit位置1，特殊区域中Ebit置0.<br>7、MT：多拓扑</p>
+<p>LSA报文头部：<br>LS age：此字段标识LSA已经生存的时间，单位时秒。<br>LS type：此字段标识了LSA的格式和功能，常用的LSA类型有5种。<br>Link State ID：此字段时该LSA所描述的那部分链路标识，例如Router ID等。<br>Advertising Router：此字段是产生此LSA的路由器Router ID。<br>LS sequence number：此字段用于检测旧的和重复的LSA。<br>LS type、Link State ID、Advertising Router的组合共同标识一条LSA</p>
+<p>DD报文：<br>Interface MTU：接口MTU值。<br>Options：可选项。<br>DBD：Init（是否第一个包）、More（是否还有后续包）、master/slaver（主/从）<br>DD Seq：DD的序列号</p>
+<p>LSA序列号：<br>1、LSDB种每一个LSA都有一个序列号<br>2、序列号范围从0<em>80000001-0</em>7FFFFFFF<br>3、OSPF没30分钟flood一次LSA来维持LSDB同步<br>4、LSA条目的老化时间默认是1小时（0~3600S）</p>
 <p>OSPF的LSA类型:<br>1、Router-LSA（Type1）：路由器产生，描述了路由器的链路状态和开销，本区域内传播<br>2、Network-LSA（Type2）：DR产生，描述本网段的链路状态，本区域内传播<br>3、Network-summary-LSA（Type3）：ABR产生，描述区域内某个网段的路由，区域间传播（除特殊区域）<br>4、ASBR-summary-LSA（Type4）：ABR产生，描述到ASBR的路由，OSPF域内传播（除特殊区域）<br>5、AS-external-LSA（Type5）：ASBR产生，描述到AS外部的路由，OSPF域内传播（除特殊区域）<br>6、NSSA LSA（Type7）：由ASBR产生，描述到AS外部的路由，仅在NSSA区域内传播。</p>
 <p>OSPF快速收敛特性：<br>1、增量最短路径优先算法I-SPF<br>     只对受影响的节点进行路由计算<br>     只第一次计算全部节点<br>2、部分路由计算PRC<br>     只对发生变化的路由进行重新计算<br>     根据I-SPF 算出来的SPT 来更新路由<br>3、智能定时器<br>     对接口翻动等原因带来的网络不稳定，进行智能控制，减少LSA洪泛<br>    其他作用略<br>4、按优先级收敛<br>    能够让某些特定的路由优先收敛的一种技术</p>
 <p>OSPF与IS-IS比较—基本特点<br>：<br>相同点:<br>1、均为IGP协议，且应用广泛<br>2、均支持IP环境<br>3、均采用分层设计和分区域设计</p>
-<p>不同点：<br>1、OSPF仅支持IP；IS-IS及支持IP，又支持CLNP<br>2、OSPF支持的网络类型丰富；IS-IS仅支持两种网络类型<br>3、OSPF支持虚连接；IS-IS虽然有类似功能，但是多数厂商不支持<br>4、OSPF工作在IP之上；IS-IS工作在数据链之上<br>5、OSPF基于接口划分区域；IS-IS基于链路划分区域</p>
+<p>不同点：<br>1、OSPF仅支持IP；IS-IS及支持IP，又支持CLNP。<br>2、OSPF支持的网络类型丰富；IS-IS仅支持两种网络类型。<br>3、OSPF支持虚连接；IS-IS虽然有类似功能，但是多数厂商不支持。<br>4、OSPF工作在IP之上；IS-IS工作在数据链之上。<br>5、OSPF基于接口划分区域；IS-IS基于链路划分区域。</p>
+<p>影响OSPF建立邻居关系的因素：<br>1、掩码会影响OSPF邻居建立（广播和非广播网络类型中才会验证子网掩码）。<br>2、hello time 和Dead time时间不匹配会影响邻居建立。<br>3、选项不匹配会印象OSPF邻居建立（区域类型不匹配）。<br>4、Router-ID冲突会影响邻居建立（仅限于直连设备）。<br>5、区域ID不匹配会影响邻居建立。<br>6、认证类型和密码不匹配会影响邻居建立。<br>7、接口不在同一个网段（广播网和非广播网有影响，p2p没有）<br>8、网络类型（hello和dead时间不匹配）</p>
+<p>影响OSPF建立邻接关系的因素：<br>1、area是否一致。<br>2、接口是否开启OSPF。<br>3、接口是否开启验证。<br>4、是否启用了静默接口，或开启过滤。<br>5、是否处于特殊区域。<br>6、Hello/Dead定时器是否一致。<br>7、Router-id是否不同。<br>9、链路两端接口掩码是否不同（广播类型链路hello会携带掩码信息）。<br>10、两端MTU是否不同（若不同会一直在Exstart状态）。<br>11、优先级都为0会影响邻接的建立。</p>
+<p>网络类型                   Hello Timer            Deadtimer<br>点到点                        10s                          40s<br>点到多点                      30s                          120s<br>广播                          10s                          40s<br>非广播（NBMA）                30s                          120s<br>虚链路（Vlink）                10s                          40s</p>
 
       
     </div>
@@ -448,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

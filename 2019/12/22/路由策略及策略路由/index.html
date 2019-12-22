@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kevin&#39;s Blog">
 <meta property="og:description" content="路由协议的类型        路由协议的外部优先级Direct                         0OSPF                           10IS-IS                          15Static                         60RIP                            100OSPF_ASE">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-22T13:11:45.864Z">
+<meta property="og:updated_time" content="2019-12-22T13:15:18.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="路由策略及策略路由">
 <meta name="twitter:description" content="路由协议的类型        路由协议的外部优先级Direct                         0OSPF                           10IS-IS                          15Static                         60RIP                            100OSPF_ASE">
@@ -333,6 +333,7 @@
 
       
         <p>路由协议的类型        路由协议的外部优先级<br>Direct                         0<br>OSPF                           10<br>IS-IS                          15<br>Static                         60<br>RIP                            100<br>OSPF_ASE                       150<br>OSPF_NSSA                      150<br>IBGP                           255<br>EBGP                           255</p>
+<a id="more"></a>
 <p>华为ACL的实现：<br>1、如果ACL用于路由控制，默认包含一条deny any<br>2、如果ACL用于流量控制，默认包含一条permit any</p>
 <p> OSPF中的filter-policy的应用：<br>import：可以再所有OSPF设备上应用，针对从OSPF路由表进入到RIB（route information database）表的路由做如方向过滤。<br>注：如果在ABR上针对需要生成3类LSA的路由做过滤，该过滤行为会影响3类LSA的通告。<br>export：只能应用在ASBR的设备上，针对从RIB表中引入到路由做出方向过滤。</p>
 <p>如何判断方向？<br>以RIB表为参照物，从RIB-&gt;OSPF是出方向，从OSPF-&gt;RIB是如方向。</p>

@@ -334,16 +334,14 @@
 
       
         
-          
-            <p>路由协议的类型        路由协议的外部优先级<br>Direct                         0<br>OSPF                           10<br>IS-IS                          15<br>Static                         60<br>RIP                            100<br>OSPF_ASE                       150<br>OSPF_NSSA                      150<br>IBGP                           255<br>EBGP                           255</p>
-<p>华为ACL的实现：<br>1、如果ACL用于路由控制，默认包含一条deny any<br>2、如果ACL用于流量控制，默认包含一条permit any</p>
-<p> OSPF中的filter-policy的应用：<br>import：可以再所有OSPF设备上应用，针对从OSPF路由表进入到RIB（route information database）表的路由做如方向过滤。<br>注：如果在ABR上针对需要生成3类LSA的路由做过滤，该过滤行为会影响3类LSA的通告。<br>export：只能应用在ASBR的设备上，针对从RIB表中引入到路由做出方向过滤。</p>
-<p>如何判断方向？<br>以RIB表为参照物，从RIB-&gt;OSPF是出方向，从OSPF-&gt;RIB是如方向。</p>
-<p>路由过滤规则：<br>1、可以在出方向过滤路由<br>     只能过滤路由信息，链路状态信息是不能被过滤的，对OSPF来说，只能过滤3类、5类、7类路由。<br>2、可以在如方向过滤路由<br>     对于链路状态路由协议，仅仅是不把路由加入到路由表中<br>3、可以过滤从其他路由协议引入的路由<br>     只能在出方向过滤，可以在ASBR重分布时操作或者在某节点使用filter-policy<br>     在如方向过滤时没有意义的<br>4、可以使用filter-policy进行过滤，也可以使用ip-prefix进行过滤</p>
-<p>访问控制列表<br>1、访问控制列表是由permit | deny 语句组成得一系列有顺序得规则，这些规则根据源地址、目的地址、端口号等来描述。<br>2、按照访问控制列表得用途，可以分为三类；<br>     基本的访问控制列表（basic acl）<br>     高级的访问控制列表（advanced acl）<br>     基于接口的访问控制列表（interface-based acl）</p>
-<p>3、访问控制列表的使用用途是依靠数字的范围来指定的<br>     2000~2999：基本ACL<br>     3000~3999：高级ACL<br>     1000~1999：基于接口的ACL<br>     4000~4999：基于二层的ACL<br>     5000~5999：基于自定义的ACL</p>
-
-          
+          <p>路由协议的类型        路由协议的外部优先级<br>Direct                         0<br>OSPF                           10<br>IS-IS                          15<br>Static                         60<br>RIP                            100<br>OSPF_ASE                       150<br>OSPF_NSSA                      150<br>IBGP                           255<br>EBGP                           255</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/22/路由策略及策略路由/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
